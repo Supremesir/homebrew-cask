@@ -1,9 +1,18 @@
 cask "eloston-chromium" do
-  version "88.0.4324.146-1.1"
-  sha256 "0684016457d75c7926f858cb5e1a0f5f37c62c8a06a74024632f4715247fb6fc"
+  if Hardware::CPU.intel?
+    version "88.0.4324.192-1.1"
+    sha256 "4cacb5ae40c37ef17cf01f4e063772ff7e83d829ae6132d8e6f2c98178bf10e9"
 
-  url "https://github.com/kramred/ungoogled-chromium-macos/releases/download/#{version}/ungoogled-chromium_#{version}_macos.dmg",
-      verified: "github.com/kramred/ungoogled-chromium-macos/"
+    url "https://github.com/kramred/ungoogled-chromium-macos/releases/download/#{version}_x86-64/ungoogled-chromium_#{version}_x86-64-macos.dmg",
+        verified: "github.com/kramred/ungoogled-chromium-macos/"
+  else
+    version "88.0.4324.150-1.1"
+    sha256 "2f643e98dd9e8384a40a4c5d0d4bc4d4ef5ea7553fa05fd54a15537a647b846a"
+
+    url "https://github.com/kramred/ungoogled-chromium-macos/releases/download/#{version}_arm64/ungoogled-chromium_#{version}_arm64-macos.dmg",
+        verified: "github.com/kramred/ungoogled-chromium-macos/"
+  end
+
   appcast "https://github.com/kramred/ungoogled-chromium-macos/releases.atom"
   name "Ungoogled Chromium"
   homepage "https://ungoogled-software.github.io/ungoogled-chromium-binaries/"
