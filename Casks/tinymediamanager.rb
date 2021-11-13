@@ -1,17 +1,18 @@
 cask "tinymediamanager" do
-  version "4.0.6"
-  sha256 "75aaaa6d1e8a08195d6c56b361fbaa934d053f68a290bc88f1445f838a07fd9a"
+  version "4.2.2"
+  sha256 "c1d07472a311624057c440bf6247d0d9e6562825f81935396a900ccccbf3f10b"
 
-  url "https://release.tinymediamanager.org/v#{version.major}/dist/tmm_#{version}_mac.zip"
-  appcast "https://release.tinymediamanager.org/"
+  url "https://release.tinymediamanager.org/v#{version.major}/dist/tmm_#{version}_macos-x86_64.zip"
   name "tinyMediaManager"
+  desc "Media management tool"
   homepage "https://www.tinymediamanager.org/"
+
+  livecheck do
+    url "https://release.tinymediamanager.org/"
+    regex(%r{href=.*?/tmm[._-]v?(\d+(?:\.\d+)+)[._-]macos[._-]x86[._-]64\.zip}i)
+  end
 
   auto_updates true
 
   app "tinyMediaManager.app"
-
-  caveats do
-    depends_on_java "8+"
-  end
 end

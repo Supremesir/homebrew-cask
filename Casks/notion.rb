@@ -1,25 +1,25 @@
 cask "notion" do
-  version "2.0.11"
+  arch = Hardware::CPU.intel? ? "" : "-arm64"
+  livecheck_folder = Hardware::CPU.intel? ? "mac" : "apple-silicon"
 
   if Hardware::CPU.intel?
-    sha256 "5b549f7ccc4738808ba997b22e63d626dbd79b9d7c544901fca7a9fe0a3073f8"
-
-    url "https://desktop-release.notion-static.com/Notion-#{version}.dmg",
-        verified: "desktop-release.notion-static.com/"
+    version "2.0.19"
+    sha256 "0d13678367144d93f4243d2228e1cf40d1bb577592823ef4b9aff81659d64f22"
   else
-    sha256 "aed019ddac9fdd72c8595214971366374da66d15e267786ac4f9e9055a4d44ed"
-
-    url "https://desktop-release.notion-static.com/Notion-#{version}-arm64.dmg",
-        verified: "desktop-release.notion-static.com/"
+    version "2.0.18"
+    sha256 "fa9e299d206dbc68950c44806871c500afe6703532da8d768502f062646954f6"
   end
 
+  url "https://desktop-release.notion-static.com/Notion-#{version}#{arch}.dmg",
+      verified: "desktop-release.notion-static.com/"
   name "Notion"
   desc "App to write, plan, collaborate, and get organized"
   homepage "https://www.notion.so/"
 
   livecheck do
-    url "https://www.notion.so/desktop/mac/download"
+    url "https://www.notion.so/desktop/#{livecheck_folder}/download"
     strategy :header_match
+    regex(/Notion-(\d+(?:\.\d+)*?)[^.]*?\.dmg/i)
   end
 
   auto_updates true

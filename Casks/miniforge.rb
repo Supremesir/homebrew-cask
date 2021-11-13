@@ -1,33 +1,33 @@
 cask "miniforge" do
-  version "4.9.2-7"
+  arch = Hardware::CPU.intel? ? "x86_64" : "arm64"
 
+  version "4.10.3-7"
+
+  url "https://github.com/conda-forge/miniforge/releases/download/#{version}/Miniforge3-#{version}-MacOSX-#{arch}.sh"
   if Hardware::CPU.intel?
-    sha256 "5813f9eadda46f655fdcf2daee10a8586ba067bb453551466fb66168268ea31b"
-    url "https://github.com/conda-forge/miniforge/releases/download/#{version}/Miniforge3-#{version}-MacOSX-x86_64.sh"
-
-    installer script: {
-      executable: "Miniforge3-#{version}-MacOSX-x86_64.sh",
-      args:       ["-b", "-p", "#{caskroom_path}/base"],
-    }
+    sha256 "a25c1b381b20873ed856ce675a7a2ccf48f1d6782a5cdce9f06496e6ffa7883f"
   else
-    sha256 "6778b36e1a4f79fc28609019eb00719e5b4253fd4dc8dfd24d17882d378aea5a"
-    url "https://github.com/conda-forge/miniforge/releases/download/#{version}/Miniforge3-#{version}-MacOSX-arm64.sh"
-
-    installer script: {
-      executable: "Miniforge3-#{version}-MacOSX-arm64.sh",
-      args:       ["-b", "-p", "#{caskroom_path}/base"],
-    }
+    sha256 "3cd1f11743f936ba522709eb7a173930c299ac681671a909b664222329a56290"
   end
 
-  appcast "https://github.com/conda-forge/miniforge/releases.atom"
   name "miniforge"
   desc "Minimal installer for conda specific to conda-forge"
   homepage "https://github.com/conda-forge/miniforge"
+
+  livecheck do
+    url :homepage
+    strategy :github_latest
+    regex(%r{href=.*?/tag/v?(\d+(?:[.-]\d+)+)["' >]}i)
+  end
 
   auto_updates true
   conflicts_with cask: "miniconda"
   container type: :naked
 
+  installer script: {
+    executable: "Miniforge3-#{version}-MacOSX-#{arch}.sh",
+    args:       ["-b", "-p", "#{caskroom_path}/base"],
+  }
   binary "#{caskroom_path}/base/condabin/conda"
 
   uninstall delete: "#{caskroom_path}/base"

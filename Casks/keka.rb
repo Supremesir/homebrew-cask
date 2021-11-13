@@ -1,13 +1,17 @@
 cask "keka" do
-  version "1.2.11"
-  sha256 "9d690bce601481df9584771f17bc6c8a66a8966383b9a505491f526ed76797fb"
+  version "1.2.18"
+  sha256 "f776850d81c2e5cef379961bc9838a81c92e97f847ad81f0f8828eef867eb0bc"
 
   url "https://github.com/aonez/Keka/releases/download/v#{version}/Keka-#{version}.dmg",
       verified: "github.com/aonez/Keka/"
-  appcast "https://github.com/aonez/Keka/releases.atom"
   name "Keka"
   desc "File archiver"
   homepage "https://www.keka.io/"
+
+  livecheck do
+    url "https://u.keka.io"
+    strategy :sparkle, &:short_version
+  end
 
   auto_updates true
   conflicts_with cask: "homebrew/cask-versions/keka-beta"
@@ -15,9 +19,13 @@ cask "keka" do
   app "Keka.app"
 
   zap trash: [
-    "~/Library/Containers/com.aone.keka",
+    "~/Library/Application Scripts/com.aone.keka",
+    "~/Library/Application Scripts/com.aone.keka.KekaFinderIntegration",
     "~/Library/Application Support/Keka",
     "~/Library/Caches/com.aone.keka",
+    "~/Library/Containers/com.aone.keka",
+    "~/Library/Containers/com.aone.keka.KekaFinderIntegration",
+    "~/Library/Group Containers/*.group.com.aone.keka",
     "~/Library/Preferences/com.aone.keka.plist",
     "~/Library/Saved Application State/com.aone.keka.savedState",
   ]

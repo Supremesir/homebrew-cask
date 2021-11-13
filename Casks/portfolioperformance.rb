@@ -1,8 +1,15 @@
 cask "portfolioperformance" do
-  version "0.50.4"
-  sha256 "a1b4bf1628ef20494b67f8cb4654783a9fadf1a2fdc6ff6052041793da201776"
+  arch = Hardware::CPU.intel? ? "x86_64" : "aarch64"
 
-  url "https://github.com/buchen/portfolio/releases/download/#{version}/PortfolioPerformance-#{version}.dmg",
+  version "0.56.0"
+
+  if Hardware::CPU.intel?
+    sha256 "171b72c885c3ccd29992bc79638d2a97c6eb39b6cfdb5511bd50383f26ccaea7"
+  else
+    sha256 "82ffe92a1d92d7596d7bb9f1e12209f0d78d651ce040bd889a1b98dbb02aec2f"
+  end
+
+  url "https://github.com/buchen/portfolio/releases/download/#{version}/PortfolioPerformance-#{version}-#{arch}.dmg",
       verified: "github.com/buchen/portfolio/"
   name "Portfolio Performance"
   desc "Calculate the overall performance of an investment portfolio"
@@ -10,8 +17,7 @@ cask "portfolioperformance" do
 
   livecheck do
     url :url
-    strategy :git
-    regex(/^(\d+(?:\.\d+)*)$/)
+    regex(/^v?(\d+(?:\.\d+)+)$/)
   end
 
   auto_updates true

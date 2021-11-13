@@ -1,15 +1,18 @@
 cask "superhuman" do
-  version "11.0.13"
+  arch = Hardware::CPU.intel? ? "" : "-arm64"
+
+  version "11.0.34"
   sha256 :no_check
 
+  url "https://download.superhuman.com/Superhuman#{arch}.dmg"
   name "Superhuman"
-  if Hardware::CPU.intel?
-    url "https://download.superhuman.com/Superhuman.dmg"
-  else
-    url "https://download.superhuman.com/Superhuman-arm64.dmg"
-  end
   desc "Email client"
   homepage "https://superhuman.com/"
+
+  livecheck do
+    url :url
+    strategy :extract_plist
+  end
 
   app "Superhuman.app"
 

@@ -1,6 +1,6 @@
 cask "vsee" do
-  version "4.10.0,42763"
-  sha256 "ed9e0e140644a9f788ecb6849e99c38ac3635849bcb0db9bd5dfc177bfb47d00"
+  version "4.12.0,44154"
+  sha256 "1b106bc2225f494a64f7182c99e6f6e9566b140b0bb4932c1c95365889e9a9ab"
 
   url "https://d2q5hugz2rti4w.cloudfront.net/mac/#{version.after_comma}/vseemac.dmg",
       verified: "d2q5hugz2rti4w.cloudfront.net/"
@@ -13,14 +13,16 @@ cask "vsee" do
     strategy :sparkle
   end
 
+  depends_on macos: ">= :el_capitan"
+
   app "VSee.app"
 
   uninstall delete: "~/Library/Internet Plug-Ins/VSeeHelper.plugin"
 
   zap trash: [
-    "~/Library/Preferences/com.vsee.VSee.plist",
     "~/Library/Application Support/VSee",
     "~/Library/Caches/com.vsee.VSee",
     "~/Library/Logs/VSee",
+    "~/Library/Preferences/com.vsee.VSee.plist",
   ]
 end

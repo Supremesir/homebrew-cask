@@ -1,10 +1,11 @@
 cask "iriunwebcam" do
-  version "2.4.4"
-  sha256 "aaf672549ea765da71366159d7b699e0749dd853818b01f10afe8956d5c0d2eb"
+  version "2.7"
+  sha256 "6b33b2769bcd3d7622df70b48cb65b7573558a25bfb512acbdc70f75d2de6322"
 
   url "https://1758658189.rsc.cdn77.org/IriunWebcam-#{version}.pkg",
       verified: "1758658189.rsc.cdn77.org/"
   name "Iriun"
+  desc "Use your phone's camera as a wireless webcam"
   homepage "https://iriun.com/"
 
   livecheck do
@@ -17,5 +18,10 @@ cask "iriunwebcam" do
 
   uninstall quit:      "com.iriun.webcam",
             pkgutil:   "com.iriun.*",
-            launchctl: "com.iriun.cmio.DPA.camera"
+            launchctl: [
+              "com.iriun.cmio.DPA.camera",
+              "com.iriun.cmio.DPA.camerb",
+              "com.iriun.cmio.DPA.camerc",
+              "com.iriun.cmio.DPA.camerd",
+            ]
 end

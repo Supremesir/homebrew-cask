@@ -1,16 +1,22 @@
 cask "zerotier-one" do
-  version "1.6.4"
-  sha256 "3271dfa409dba0cf05578f60c91e5a8981a5aa685692cf4444a2fe756aae7830"
+  version "1.8.2"
+  sha256 "63a60e40a8c84948367ad5bf55ef188986539f0612ff8703a45017fe8b41b736"
 
   url "https://download.zerotier.com/RELEASES/#{version}/dist/ZeroTier%20One.pkg"
-  appcast "https://github.com/zerotier/ZeroTierOne/releases.atom"
   name "ZeroTier One"
   desc "Mesh VPN client"
   homepage "https://www.zerotier.com/download.shtml"
 
+  livecheck do
+    url "https://github.com/zerotier/ZeroTierOne"
+    strategy :github_latest
+  end
+
   pkg "ZeroTier One.pkg"
 
-  uninstall pkgutil:   "com.zerotier.pkg.ZeroTierOne",
-            launchctl: "com.zerotier.one",
-            kext:      "com.zerotier.tap"
+  uninstall quit:      "com.zerotier.ZeroTier-One",
+            pkgutil:   "com.zerotier.pkg.ZeroTierOne",
+            launchctl: "com.zerotier.one"
+
+  zap trash: "~/Library/Preferences/com.zerotier.ZeroTier-One.plist"
 end

@@ -1,15 +1,22 @@
 cask "tinkerwell" do
-  version "2.12.1"
-  sha256 "4f70970540aa92f7f4635b618256a0272e67fb6b4725c4b33e2ef5d517c09fd4"
+  arch = Hardware::CPU.intel? ? "" : "-arm64"
 
-  url "https://download.tinkerwell.app/tinkerwell/Tinkerwell-#{version}.dmg"
+  version "2.18.1"
+
+  if Hardware::CPU.intel?
+    sha256 "1348d171fa38bbfb6060f1d5cc25d08dbcc847fb7c44a04b548323c26463a825"
+  else
+    sha256 "e5402f01c863da00ff143ec008f491fb42281aaf4689bcde4c0089bc29e36803"
+  end
+
+  url "https://download.tinkerwell.app/tinkerwell/Tinkerwell-#{version}#{arch}.dmg"
   name "Tinkerwell"
+  desc "Tinker tool for PHP and Laravel developers"
   homepage "https://tinkerwell.app/"
 
   livecheck do
     url "https://download.tinkerwell.app/tinkerwell/latest-mac.yml"
-    strategy :page_match
-    regex(/version:\s*(\d+(?:\.\d+)*)/i)
+    strategy :electron_builder
   end
 
   auto_updates true

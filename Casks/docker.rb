@@ -1,13 +1,15 @@
 cask "docker" do
-  if MacOS.version <= :el_capitan
-    version "18.06.1-ce-mac73,26764"
-    sha256 "3429eac38cf0d198039ad6e1adce0016f642cdb914a34c67ce40f069cdb047a5"
+  arch = Hardware::CPU.intel? ? "amd64" : "arm64"
+
+  version "4.2.0,70708"
+
+  url "https://desktop.docker.com/mac/main/#{arch}/#{version.after_comma}/Docker.dmg"
+  if Hardware::CPU.intel?
+    sha256 "fdfc8dd89e21f34d61e38ae1ff69e1a10f8b66fce2366bf0c7f6d1c07eb64425"
   else
-    version "3.1.0,51484"
-    sha256 "9e68684d7d19de90034630ec2127a5d49138dc314857059fa75a99687be2b6b8"
+    sha256 "7ad2311d6584660476671723ba82e9e68274776a809de614e536066332a3e853"
   end
 
-  url "https://desktop.docker.com/mac/stable/#{version.after_comma}/Docker.dmg"
   name "Docker Desktop"
   name "Docker Community Edition"
   name "Docker CE"
@@ -15,13 +17,34 @@ cask "docker" do
   homepage "https://www.docker.com/products/docker-desktop"
 
   livecheck do
-    url "https://desktop.docker.com/mac/stable/appcast.xml"
+    url "https://desktop.docker.com/mac/main/#{arch}/appcast.xml"
     strategy :sparkle
   end
 
   auto_updates true
+  conflicts_with formula: %w[
+    docker
+    docker-completion
+    docker-compose
+    docker-compose-completion
+    docker-credential-helper-ecr
+    hyperkit
+    kubernetes-cli
+  ]
 
   app "Docker.app"
+  binary "#{appdir}/Docker.app/Contents/Resources/etc/docker.bash-completion",
+         target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/docker"
+  binary "#{appdir}/Docker.app/Contents/Resources/etc/docker-compose.bash-completion",
+         target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/docker-compose"
+  binary "#{appdir}/Docker.app/Contents/Resources/etc/docker.zsh-completion",
+         target: "#{HOMEBREW_PREFIX}/share/zsh/site-functions/_docker"
+  binary "#{appdir}/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion",
+         target: "#{HOMEBREW_PREFIX}/share/zsh/site-functions/_docker_compose"
+  binary "#{appdir}/Docker.app/Contents/Resources/etc/docker.fish-completion",
+         target: "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d/docker.fish"
+  binary "#{appdir}/Docker.app/Contents/Resources/etc/docker-compose.fish-completion",
+         target: "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d/docker-compose.fish"
 
   uninstall delete:    [
     "/Library/PrivilegedHelperTools/com.docker.vmnetd",
@@ -47,6 +70,7 @@ cask "docker" do
     "/usr/local/bin/docker-compose.backup",
     "/usr/local/bin/docker.backup",
     "~/Library/Application Support/Docker Desktop",
+    "~/Library/Application Support/com.bugsnag.Bugsnag/com.docker.docker",
     "~/Library/Application Scripts/com.docker.helper",
     "~/Library/Caches/KSCrashReports/Docker",
     "~/Library/Caches/com.docker.docker",
@@ -54,6 +78,7 @@ cask "docker" do
     "~/Library/Containers/com.docker.docker",
     "~/Library/Containers/com.docker.helper",
     "~/Library/Group Containers/group.com.docker",
+    "~/Library/HTTPStorages/com.docker.docker.binarycookies",
     "~/Library/Preferences/com.docker.docker.plist",
     "~/Library/Preferences/com.electron.docker-frontend.plist",
     "~/Library/Saved Application State/com.electron.docker-frontend.savedState",

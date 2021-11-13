@@ -1,21 +1,25 @@
 cask "ueli" do
-  version "8.11.0"
-  sha256 "b05719f0e9ef0b55c37265281241a361be96a503669c53610a33a889015fbac5"
+  version "8.18.1"
+  sha256 "b1be1c42e7f006b1a77b62c79479c9845a99ab1af558d07a5fb1871e0fcaed13"
 
   url "https://github.com/oliverschwendener/ueli/releases/download/v#{version}/ueli-#{version}.dmg",
       verified: "github.com/oliverschwendener/ueli/"
-  appcast "https://github.com/oliverschwendener/ueli/releases.atom"
   name "Ueli"
   desc "Keystroke launcher"
   homepage "https://ueli.app/"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   app "ueli.app"
 
   uninstall quit: "ueli"
 
   zap trash: [
-    "~/Library/Logs/ueli",
     "~/Library/Application Support/ueli",
+    "~/Library/Logs/ueli",
     "~/Library/Preferences/com.electron.ueli.plist",
   ]
 end

@@ -1,6 +1,6 @@
 cask "noxappplayer" do
-  version "3.8.5.2,20210207:d657acbbd3a94afd9edeebca37ff75a0"
-  sha256 "7d2abf2ffb5e39355aa6061d4d5daf572dd89d4d7c2297da8d8fc4765d3564f1"
+  version "3.8.5.6,20210617:7b95569e63e7493ea3daf9fae4574e4c"
+  sha256 "ec816784862cab820cc0b93f73eca6783628e6eb88607e17285545edc523a976"
 
   url "https://res06.bignox.com/full/#{version.after_comma.before_colon}/#{version.after_colon}.dmg?filename=NoxInstaller_#{version.before_comma}_en.dmg"
   name "NoxAppPlayer"
@@ -11,6 +11,8 @@ cask "noxappplayer" do
     url "https://www.bignox.com/en/download/fullPackage/mac_fullzip"
     strategy :header_match do |headers|
       match = headers["location"].match(%r{/(\d+)/([^/]+)\.dmg\?filename=NoxInstaller_(\d+(?:\.\d+)*)_en\.dmg}i)
+      next if match.blank?
+
       "#{match[3]},#{match[1]}:#{match[2]}"
     end
   end
@@ -18,4 +20,9 @@ cask "noxappplayer" do
   container nested: "NoxAppPlayerInstaller.app/Contents/MacOS/NoxAppPlayer.zip"
 
   app "NoxAppPlayer.app"
+
+  zap trash: [
+    "~/Library/Application Support/NoxAppPlayer",
+    "~/Library/Saved Application State/com.nox.NoxAppPlayer.savedState",
+  ]
 end

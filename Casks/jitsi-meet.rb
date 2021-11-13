@@ -1,12 +1,13 @@
 cask "jitsi-meet" do
-  version "2.5.1"
-  sha256 "e3851ad26a5037f1774e5cdcd9139f76472422cfc111936d284d8b7f1e30de9a"
+  version "2021.11.2"
+  sha256 "7ecea66a5194d5f223b84e47e4492cc753f06475599207b4e4a2494d37480e3a"
 
   url "https://github.com/jitsi/jitsi-meet-electron/releases/download/v#{version}/jitsi-meet.dmg"
-  appcast "https://github.com/jitsi/jitsi-meet-electron/releases.atom"
   name "Jitsi Meet"
-  desc "Free, open-source and secure video conferencing app"
-  homepage "https://github.com/jitsi/jitsi-meet-electron"
+  desc "Secure video conferencing app"
+  homepage "https://github.com/jitsi/jitsi-meet-electron/"
+
+  auto_updates true
 
   app "Jitsi Meet.app"
 

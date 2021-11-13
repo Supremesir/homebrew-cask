@@ -1,12 +1,16 @@
 cask "vorta" do
-  version "0.7.3"
-  sha256 "8c4d0e40ed902f0df3da6caadde25add9d3b40068002ae87df63694f2afe106c"
+  version "0.7.8"
+  sha256 "afc5d415bfa0e7abad64799d052f9ea58078bc2dbae34c0d38dc94344d12a8a0"
 
   url "https://github.com/borgbase/vorta/releases/download/v#{version}/vorta-#{version}.dmg"
-  appcast "https://github.com/borgbase/vorta/releases.atom"
   name "Vorta"
   desc "Desktop Backup Client for Borg"
   homepage "https://github.com/borgbase/vorta"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   auto_updates true
   depends_on macos: ">= :mojave"

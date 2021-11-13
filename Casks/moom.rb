@@ -1,12 +1,16 @@
 cask "moom" do
-  version "3.2.20"
-  sha256 "924a08f89379a4c5ade4b079af9e41fb91ec0297d291d123f29800d18c187def"
+  version "3.2.23,3329"
+  sha256 "a78032968be1ce58409f320065b23ccdbb48f621cb4b50e3abe80bcc9491e871"
 
-  url "https://manytricks.com/download/_do_not_hotlink_/moom#{version.no_dots}.dmg"
-  appcast "https://manytricks.com/moom/appcast"
+  url "https://manytricks.com/download/_do_not_hotlink_/moom#{version.before_comma.no_dots}.dmg"
   name "Moom"
   desc "Utility to move and zoom windows—on one display"
   homepage "https://manytricks.com/moom/"
+
+  livecheck do
+    url "https://manytricks.com/moom/appcast/"
+    strategy :sparkle
+  end
 
   auto_updates true
 

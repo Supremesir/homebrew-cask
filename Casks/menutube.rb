@@ -4,10 +4,15 @@ cask "menutube" do
 
   url "https://github.com/edanchenkov/MenuTube/releases/download/#{version}/MenuTube-#{version}.dmg",
       verified: "github.com/edanchenkov/MenuTube/"
-  appcast "https://github.com/edanchenkov/MenuTube/releases.atom"
   name "MenuTube"
   desc "Tool to capture YouTube into the menu bar"
   homepage "https://edanchenkov.github.io/MenuTube/"
 
   app "MenuTube.app"
+
+  zap trash: [
+    "~/Library/Application Support/MenuTube",
+    "~/Library/Preferences/com.rednuclearmonkey.menutube.plist",
+    "~/Library/Saved Application State/com.rednuclearmonkey.menutube.savedState",
+  ]
 end

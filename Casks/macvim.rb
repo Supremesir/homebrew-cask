@@ -1,6 +1,6 @@
 cask "macvim" do
-  version "169"
-  sha256 "cd558e503919c68997ad86513de3bc0915bd631615b1071b7fea02291d1bad07"
+  version "172"
+  sha256 "c603a81036e7dab04e5daee70e1811675a859f833ae6aa713aca5bfc8a26c977"
 
   url "https://github.com/macvim-dev/macvim/releases/download/snapshot-#{version}/MacVim.dmg"
   name "MacVim"
@@ -21,12 +21,16 @@ cask "macvim" do
     gview
     gvim
     gvimdiff
+    gvimex
     mview
     mvim
     mvimdiff
+    mvimex
     view
     vim
     vimdiff
+    vimex
+    vi
   ].each { |link_name| binary "#{appdir}/MacVim.app/Contents/bin/mvim", target: link_name }
 
   zap trash: [

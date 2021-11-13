@@ -1,9 +1,10 @@
 cask "miktex-console" do
-  version "21.1"
-  sha256 "645d4bb816d712c5ba7f97ca21c30c8c1fdbf54600560f38408b05e208c529f0"
+  version "21.7"
+  sha256 "a274220b1237837a300717042258a27092f4065514634df5ce8da05a0c0956b1"
 
   url "https://miktex.org/download/ctan/systems/win32/miktex/setup/darwin-x86_64/miktex-#{version}-darwin-x86_64.dmg"
   name "MiKTeX"
+  desc "TeX distribution"
   homepage "https://miktex.org/"
 
   livecheck do

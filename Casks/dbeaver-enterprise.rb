@@ -1,9 +1,10 @@
 cask "dbeaver-enterprise" do
-  version "7.3.0"
-  sha256 "75e778c353d07fa02ed845fbb4f04afaa8d0462c46ac6b8e3a062349935fd873"
+  version "21.2.0"
+  sha256 "2fc2d2a91544a9559876a0849656290b02bab6d944b458eda82021184b11c914"
 
   url "https://dbeaver.com/files/#{version}/dbeaver-ee-#{version}-macos.dmg"
   name "DBeaver Enterprise Edition"
+  desc "Universal database tool and SQL client"
   homepage "https://dbeaver.com/"
 
   livecheck do

@@ -1,5 +1,5 @@
 cask "gitfox" do
-  version "1.4910"
+  version "1.5180"
   sha256 :no_check
 
   url "https://storage.googleapis.com/gitfox/Gitfox.latest.stable.zip",
@@ -8,9 +8,15 @@ cask "gitfox" do
   desc "Git client"
   homepage "https://www.gitfox.app/"
 
+  livecheck do
+    url :url
+    strategy :extract_plist
+  end
+
   auto_updates true
 
   app "Gitfox.app"
+  binary "#{appdir}/Gitfox.app/Contents/SharedSupport/bin/gf"
 
   zap trash: [
     "~/Library/Application Support/com.bytieful.Gitfox",

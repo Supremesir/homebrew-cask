@@ -1,15 +1,18 @@
 cask "upwork" do
-  version "5.5.0.1,291c031686ed44ff"
-  sha256 "d777dca8863c722b482d3641cb3e9bc9690f8e3a3584be45d861d4959d9e1aee"
+  version "5.6.9.3,10c2eb9781db4d7f"
+  sha256 "37ecf8703d99157ca09e9771ab5178e518d0440126ed9ddb89e10e7a8957968a"
 
-  url "https://updates-desktopapp.upwork.com/binaries/v#{version.before_comma.dots_to_underscores}_#{version.after_comma}/Upwork.dmg"
+  url "https://upwork-usw2-desktopapp.upwork.com/binaries/v#{version.before_comma.dots_to_underscores}_#{version.after_comma}/Upwork.dmg"
   name "Upwork"
+  desc "Work marketplace for freelancing"
   homepage "https://www.upwork.com/"
 
   livecheck do
-    url "https://updates-desktopapp.upwork.com/binaries/versions-mac.json"
+    url "https://upwork-usw2-desktopapp.upwork.com/binaries/versions-mac.json"
     strategy :page_match do |page|
       match = page.match(%r{/v(\d+(?:_\d+)*)_([^/]+)/Upwork\.dmg}i)
+      next if match.blank?
+
       "#{match[1].tr("_", ".")},#{match[2]}"
     end
   end

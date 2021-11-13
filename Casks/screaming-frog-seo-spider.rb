@@ -1,9 +1,10 @@
 cask "screaming-frog-seo-spider" do
-  version "14.2"
-  sha256 "6b4c56317f00575958e692d30ff74902d107c08733d076c25d61355ec55533d0"
+  version "16.3"
+  sha256 "b17a9acf1d282922768dba3742e647357992e8dcfe7d1abc521fb167822b4c52"
 
   url "https://download.screamingfrog.co.uk/products/seo-spider/ScreamingFrogSEOSpider-#{version}.dmg"
   name "Screaming Frog SEO Spider"
+  desc "SEO site audit tool"
   homepage "https://www.screamingfrog.co.uk/seo-spider/"
 
   livecheck do

@@ -1,9 +1,15 @@
 cask "lx-music" do
-  version "1.7.1"
-  sha256 "77e18ab33a152ba56891a019ea154f06dce8f1f8a4194cb3a1cb7fcf8feaeea5"
+  arch = Hardware::CPU.intel? ? "" : "-arm64"
 
-  url "https://github.com/lyswhut/lx-music-desktop/releases/download/v#{version}/lx-music-desktop-#{version}.dmg"
-  appcast "https://github.com/lyswhut/lx-music-desktop/releases.atom"
+  version "1.15.2"
+
+  if Hardware::CPU.intel?
+    sha256 "9f0318fcc5a7cdf73cbaf876755ac0410ce3f513a8e282cf1d6e3d7f24f6af02"
+  else
+    sha256 "fc1865b810707a03923bbc4711ee9c319ccce3673d41b0fd277453f49305f9de"
+  end
+
+  url "https://github.com/lyswhut/lx-music-desktop/releases/download/v#{version}/lx-music-desktop-#{version}#{arch}.dmg"
   name "LX Music Assistant Desktop Edition"
   name "洛雪音乐助手桌面版"
   desc "Music app base on Electron & Vue"

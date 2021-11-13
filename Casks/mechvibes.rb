@@ -4,10 +4,14 @@ cask "mechvibes" do
 
   url "https://github.com/hainguyents13/mechvibes/releases/download/v#{version}/Mechvibes-#{version}.dmg",
       verified: "github.com/hainguyents13/mechvibes/"
-  appcast "https://github.com/hainguyents13/mechvibes/releases.atom"
   name "Mechvibes"
   desc "Play mechanical keyboard sounds as you type"
   homepage "https://mechvibes.com/"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   app "Mechvibes.app"
 end

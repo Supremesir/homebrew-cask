@@ -1,11 +1,16 @@
 cask "tyme" do
-  version "2021.3,3344"
+  version "2021.16,3690"
   sha256 :no_check
 
   url "https://www.tyme-app.com/app/Tyme3.zip"
   name "Tyme 3"
   desc "Time tracking app"
   homepage "https://www.tyme-app.com/"
+
+  livecheck do
+    url :url
+    strategy :extract_plist
+  end
 
   app "Tyme.app"
 

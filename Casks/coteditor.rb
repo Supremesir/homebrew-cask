@@ -9,8 +9,8 @@ cask "coteditor" do
     version "3.9.7"
     sha256 "be34d4f800e73cc8363d8b83e1b257a06176dc85d345d680149b108f51686cf2"
   else
-    version "4.0.1"
-    sha256 "879fa6ef8199c10c8b42b6adaa4a528b41295b97457c7e06fd1a412f65f0ffb9"
+    version "4.0.8"
+    sha256 "3abb8ba8c786263e9f73361ce5159acb4aaaba5d4afa4ea1c570e7fb35ab1da5"
   end
 
   url "https://github.com/coteditor/CotEditor/releases/download/#{version}/CotEditor_#{version}.dmg",
@@ -18,6 +18,12 @@ cask "coteditor" do
   name "CotEditor"
   desc "Plain-text editor for web pages, program source codes and more"
   homepage "https://coteditor.com/"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+    regex(%r{href=.*?/tag/v?(\d+(?:[.-]\d+)+)["' >]}i)
+  end
 
   auto_updates true
 
@@ -30,5 +36,6 @@ cask "coteditor" do
     "~/Library/Caches/com.apple.helpd/SDMHelpData/Other/English/HelpSDMIndexFile/com.coteditor.CotEditor.help*",
     "~/Library/Caches/com.apple.helpd/SDMHelpData/Other/Japanese/HelpSDMIndexFile/com.coteditor.CotEditor.help*",
     "~/Library/Containers/com.coteditor.CotEditor",
+    "~/Library/Preferences/com.coteditor.CotEditor.plist",
   ]
 end

@@ -1,14 +1,19 @@
 cask "bootstrap-studio" do
-  version "5.5.1"
-  sha256 "d8a559d884cdf5e26513e5e1ac38f201572326f8b320ea2702c27cb68e1657f5"
+  version "5.8.5"
+  sha256 "2dddd8d4edc17f944ef1b701a6755fced91c10416304726680e2ae2e4820c514"
 
   url "https://bootstrapstudio.io/releases/desktop/#{version}/Bootstrap%20Studio.dmg"
-  appcast "https://bootstrapstudio.io/pages/releases"
   name "Bootstrap Studio"
   desc "Design and prototype websites using the Bootstrap framework"
   homepage "https://bootstrapstudio.io/"
 
+  livecheck do
+    url "https://bootstrapstudio.io/pages/releases/"
+    regex(/Version\s*(\d+(?:\.\d+)+)/i)
+  end
+
   auto_updates true
+  depends_on macos: ">= :yosemite"
 
   app "Bootstrap Studio.app"
 

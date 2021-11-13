@@ -1,6 +1,6 @@
 cask "datweatherdoe" do
-  version "1.5.0"
-  sha256 "c12caf1bf6134b817afde2c09af86cff07d5dfe36bf780216ced6f4b272eabbc"
+  version "2.1.4"
+  sha256 "1f336467f6ea85e0be250d55ed9086ae0c2d1e9022accabc82a2451a9df726ef"
 
   url "https://github.com/inderdhir/DatWeatherDoe/releases/download/#{version}/DatWeatherDoe-#{version}.dmg"
   name "DatWeatherDoe"
@@ -13,4 +13,6 @@ cask "datweatherdoe" do
   end
 
   app "DatWeatherDoe.app"
+
+  zap trash: "~/Library/Preferences/com.inderdhir.DatWeatherDoe.plist"
 end

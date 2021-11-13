@@ -1,10 +1,17 @@
 cask "dbeaver-community" do
-  version "7.3.5"
-  sha256 "12d7cd6167a411f57ab9ece5f68dbbf0a0c689058836bb52fd0d140e5970217b"
+  arch = Hardware::CPU.intel? ? "x86_64" : "aarch64"
 
-  url "https://dbeaver.io/files/#{version}/dbeaver-ce-#{version}-macos.dmg"
+  version "21.2.4"
+
+  url "https://dbeaver.io/files/#{version}/dbeaver-ce-#{version}-macos-#{arch}.dmg"
+  if Hardware::CPU.intel?
+    sha256 "86635e17f6afab4000296cdc1917530452c8a972caa9befdadd0ea12ace3be20"
+  else
+    sha256 "fa5baf4ba48c461149ee67cee855b60d7781b9f072cc9fcb41aed79c7c76e7d4"
+  end
+
   name "DBeaver Community Edition"
-  desc "Free universal database tool and SQL client"
+  desc "Universal database tool and SQL client"
   homepage "https://dbeaver.io/"
 
   livecheck do
@@ -14,7 +21,9 @@ cask "dbeaver-community" do
 
   app "DBeaver.app"
 
-  caveats do
-    depends_on_java "8+"
-  end
+  zap trash: [
+    "~/Library/DBeaverData",
+    "~/Library/Preferences/org.jkiss.dbeaver.core.product.plist",
+    "~/Library/Saved Application State/org.jkiss.dbeaver.core.product.savedState",
+  ]
 end

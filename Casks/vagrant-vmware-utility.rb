@@ -1,12 +1,17 @@
 cask "vagrant-vmware-utility" do
-  version "1.0.18"
-  sha256 "6db6215a54190dbe09a66d2be27f212e94b863f6767055eeacebb042556f0d75"
+  version "1.0.21"
+  sha256 "d05999fd5eecd1e7faf2086846b3ba0e5d5f4c2f20574ec371d74f27f7f99f5e"
 
   url "https://releases.hashicorp.com/vagrant-vmware-utility/#{version}/vagrant-vmware-utility_#{version}_x86_64.dmg",
       verified: "releases.hashicorp.com/vagrant-vmware-utility/"
-  appcast "https://releases.hashicorp.com/vagrant-vmware-utility/"
   name "Vagrant VMware Utility"
+  desc "Gives Vagrant VMware plugin access to various VMware functionalities"
   homepage "https://www.vagrantup.com/vmware/downloads.html"
+
+  livecheck do
+    url "https://releases.hashicorp.com/vagrant-vmware-utility/"
+    regex(%r{href=["']?/?vagrant-vmware-utility/v?(\d+(?:\.\d+)+)/?["' >]}i)
+  end
 
   pkg "VagrantVMwareUtility.pkg"
 

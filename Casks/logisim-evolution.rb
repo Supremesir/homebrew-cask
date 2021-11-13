@@ -1,20 +1,18 @@
 cask "logisim-evolution" do
-  version "3.4.1"
-  sha256 "1b72dd3397290b7be95f886b933bd37a2d9182b8d33247fa5f059d0867e8111c"
+  version "3.7.1"
+  sha256 "20a86beaca3133d3c892e5684b324417f205a4b598eab0828ee1255023378650"
 
-  url "https://github.com/reds-heig/logisim-evolution/releases/download/v#{version}/logisim-evolution-#{version}-all.jar"
-  appcast "https://github.com/reds-heig/logisim-evolution/releases.atom"
+  url "https://github.com/reds-heig/logisim-evolution/releases/download/v#{version}/Logisim-evolution-#{version}.dmg"
   name "Logisim Evolution"
   desc "Digital logic designer and simulator"
   homepage "https://github.com/reds-heig/logisim-evolution"
 
-  container type: :naked
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
-  app "logisim-evolution-#{version}-all.jar", target: "logisim-evolution.jar"
+  app "Logisim-evolution.app"
 
   zap trash: "~/Library/Preferences/com.cburch.logisim.plist"
-
-  caveats do
-    depends_on_java "9+"
-  end
 end

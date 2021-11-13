@@ -1,6 +1,6 @@
 cask "azure-data-studio" do
-  version "1.26.0"
-  sha256 "df81d6971edb87d65cfa6d2ef69763ad5ce20fe5b46e3443b53397df3de96cad"
+  version "1.33.1"
+  sha256 "73ff269b941929e650be6e8e73203185a0949c86cd072fa42436a141ffeed2ed"
 
   url "https://azuredatastudio-update.azurewebsites.net/#{version}/darwin/stable",
       verified: "azuredatastudio-update.azurewebsites.net/"
@@ -11,7 +11,7 @@ cask "azure-data-studio" do
   livecheck do
     url "https://azuredatastudio-update.azurewebsites.net/api/update/darwin/stable/VERSION"
     strategy :page_match
-    regex(/"productVersion"\s*:\s*"(\d+(:?\.\d+)*)"/)
+    regex(/"productVersion"\s*:\s*"(\d+(:?\.\d+)+)"/)
   end
 
   auto_updates true

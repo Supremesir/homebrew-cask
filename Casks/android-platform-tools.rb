@@ -1,6 +1,6 @@
 cask "android-platform-tools" do
-  version "31.0.0,f62237c314a6bb80f574f0812e8109e16d52076d"
-  sha256 "572d78cea416c4e563534534bef58acb55113fb277c53cf469d7138d29d41d70"
+  version "31.0.3,e8b2b4cbe47c728c1e54c5f524440b52d4e1a33c"
+  sha256 "773c08cfa31cec1bb4568ce5b374366e6310a5ffc21875024604a0f65bc831b1"
 
   url "https://dl.google.com/android/repository/#{version.after_comma}.platform-tools_r#{version.before_comma}-darwin.zip",
       verified: "google.com/android/repository/"
@@ -12,6 +12,8 @@ cask "android-platform-tools" do
     url "https://dl.google.com/android/repository/platform-tools-latest-darwin.zip"
     strategy :header_match do |headers|
       match = headers["location"].match(%r{/([0-9a-f]{40,}).platform-tools_r([.0-9]+)-darwin})
+      next if match.blank?
+
       "#{match[2]},#{match[1]}"
     end
   end

@@ -1,11 +1,18 @@
 cask "webex" do
-  version "41.1.0.17740"
+  arch = Hardware::CPU.intel? ? "TeamsDesktop-MACOS" : "Desktop-MACOS-Apple-Silicon"
+
+  version "41.10.0.20395"
   sha256 :no_check
 
-  url "https://binaries.webex.com/WebexTeamsDesktop-MACOS-Gold/Webex.dmg"
+  url "https://binaries.webex.com/Webex#{arch}-Gold/Webex.dmg"
   name "Webex Teams"
   desc "Video communication and virtual meeting platform"
   homepage "https://www.webex.com/"
+
+  livecheck do
+    url :url
+    strategy :extract_plist
+  end
 
   app "Webex.app"
 
@@ -14,8 +21,8 @@ cask "webex" do
   ]
 
   zap trash: [
-    "~/Library/Preferences/Cisco-Systems.Spark.plist",
     "~/Library/Caches/Cisco-Systems.Spark",
     "~/Library/Logs/SparkMacDesktop",
+    "~/Library/Preferences/Cisco-Systems.Spark.plist",
   ]
 end

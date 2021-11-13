@@ -1,13 +1,14 @@
 cask "universal-media-server" do
-  version "10.1.0"
-  sha256 "da5e8f10f482e0599c6e921e03ac2f00fd2f2d137424d12b494fb338655adffb"
+  version "10.12.0"
+  sha256 "bc04df210e6d5f23d891c2188ccb331714ca48f337af0cac96a1da17ba1ff79d"
 
   url "https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/#{version}/UMS-#{version}.dmg",
       verified: "github.com/UniversalMediaServer/UniversalMediaServer/"
-  appcast "https://github.com/UniversalMediaServer/UniversalMediaServer/releases.atom"
   name "Universal Media Server"
   desc "Media server supporting DLNA, UPnP and HTTP(S)"
   homepage "https://www.universalmediaserver.com/"
+
+  depends_on macos: ">= :catalina"
 
   app "Universal Media Server.app"
 

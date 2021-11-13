@@ -1,10 +1,10 @@
 cask "pixel-picker" do
-  version "1.5.0"
-  sha256 "61ed0cb9509b18a000491c9a9052296e1fd0789d95a5499768688bb941f87fc3"
+  version "1.6.1"
+  sha256 "2c98627f6fca2f3a7d043499e63be25dd80ecd6ab848e15637961f10ebc0bd6f"
 
   url "https://github.com/acheronfail/pixel-picker/releases/download/#{version}/Pixel.Picker.#{version}.dmg"
-  appcast "https://github.com/acheronfail/pixel-picker/releases.atom"
   name "Pixel Picker"
+  desc "Menu bar application to pick colours from your screen"
   homepage "https://github.com/acheronfail/pixel-picker"
 
   depends_on macos: ">= :sierra"

@@ -1,9 +1,8 @@
 cask "loopback" do
-  version "2.2.2"
+  version "2.2.6"
   sha256 :no_check
 
-  url "https://d2oxtzozd38ts8.cloudfront.net/loopback/download/Loopback.zip",
-      verified: "d2oxtzozd38ts8.cloudfront.net/loopback/"
+  url "https://rogueamoeba.com/loopback/download/Loopback.zip"
   name "Loopback"
   desc "Cable-free audio router"
   homepage "https://rogueamoeba.com/loopback/"
@@ -17,6 +16,17 @@ cask "loopback" do
   depends_on macos: ">= :sierra"
 
   app "Loopback.app"
+  installer script: {
+    executable: "Loopback.app/Contents/Resources/aceinstaller",
+    args:       ["install", "--silent"],
+    sudo:       true,
+  }
+
+  uninstall script: {
+    executable: "Loopback.app/Contents/Resources/aceinstaller",
+    args:       ["uninstall", "--silent"],
+    sudo:       true,
+  }
 
   zap trash: [
     "~/Library/Application Support/Loopback",

@@ -1,13 +1,21 @@
 cask "macfuse" do
-  version "4.0.5"
-  sha256 "6365d10c9e388ac7a91fe1e65d54694faad69149f421125eaddfff07d48763ea"
+  version "4.2.1"
+  sha256 "bd3abba91a8c16005eb3937ad492e49275e60db429bbecd30d54769c191e0699"
 
   url "https://github.com/osxfuse/osxfuse/releases/download/macfuse-#{version}/macfuse-#{version}.dmg",
       verified: "github.com/osxfuse/osxfuse/"
-  appcast "https://github.com/osxfuse/osxfuse/releases.atom"
   name "macFUSE"
   desc "File system integration"
   homepage "https://osxfuse.github.io/"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+    regex(%r{href=.*?/macfuse-(\d+(?:\.\d+)*)\.dmg}i)
+  end
+
+  conflicts_with cask: "macfuse-dev"
+  depends_on macos: ">= :sierra"
 
   pkg "Extras/macFUSE #{version}.pkg"
 
@@ -21,6 +29,6 @@ cask "macfuse" do
   ]
 
   caveats do
-    reboot
+    kext
   end
 end

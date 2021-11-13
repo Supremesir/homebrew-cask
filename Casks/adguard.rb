@@ -1,6 +1,6 @@
 cask "adguard" do
-  version "2.5.2.949"
-  sha256 "a38b91ca238094604edd3988f22f92eaa0f5a9e99f0dbc5cc7b440a29f301f6b"
+  version "2.6.1.1051"
+  sha256 "e7b9632bbfaeefb055869bf68fcbbd7db79b7ad439c82d083bb9f6e27d7e84eb"
 
   url "https://static.adguard.com/mac/release/AdGuard-#{version}.dmg"
   name "Adguard"
@@ -18,12 +18,19 @@ cask "adguard" do
 
   pkg "AdGuard.pkg"
 
-  uninstall pkgutil: "com.adguard.mac.adguard-pkg"
+  uninstall pkgutil:   "com.adguard.mac.adguard-pkg",
+            launchctl: [
+              "com.adguard.mac.adguard.pac",
+              "com.adguard.mac.adguard.tun-helper",
+            ]
 
   zap trash: [
+    "/Library/com.adguard.mac.adguard.pac",
     "/Library/Application Support/com.adguard.Adguard",
     "~/Library/Application Support/Adguard",
     "~/Library/Application Support/com.adguard.Adguard",
+    "~/Library/Application Support/com.adguard.mac.adguard.pac",
+    "~/Library/Application Support/com.adguard.mac.adguard.tun-helper",
     "~/Library/Caches/com.adguard.Adguard",
     "~/Library/Cookies/com.adguard.Adguard.binarycookies",
     "~/Library/Logs/Adguard",

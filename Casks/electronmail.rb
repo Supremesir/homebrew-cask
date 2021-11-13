@@ -1,12 +1,17 @@
 cask "electronmail" do
-  version "4.10.1"
-  sha256 "3e72c869855762431ecd03dc9a8820d75f512de2d042617680a01d7c47d4377c"
+  version "4.13.0"
+  sha256 "05c4d22acaff106acd3919131c80c53fa2e7850e303c9585af295b22a19afb5c"
 
-  url "https://github.com/vladimiry/ElectronMail/releases/download/v#{version}/electron-mail-#{version}-mac.dmg"
-  appcast "https://github.com/vladimiry/ElectronMail/releases.atom"
+  url "https://github.com/vladimiry/ElectronMail/releases/download/v#{version}/electron-mail-#{version}-mac-x64.dmg"
   name "ElectronMail"
   desc "Unofficial ProtonMail Desktop App"
   homepage "https://github.com/vladimiry/ElectronMail"
 
   app "ElectronMail.app"
+
+  zap trash: [
+    "~/Library/Logs/ElectronMail",
+    "~/Library/Preferences/github.comvladimiryElectronMail.plist",
+    "~/Library/Saved Application State/github.comvladimiryElectronMail.savedState",
+  ]
 end

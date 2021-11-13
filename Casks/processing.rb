@@ -4,9 +4,17 @@ cask "processing" do
 
   url "https://github.com/processing/processing/releases/download/processing-#{version.after_comma}-#{version.before_comma}/processing-#{version.before_comma}-macosx.zip",
       verified: "github.com/processing/processing/"
-  appcast "https://github.com/processing/processing/releases.atom"
   name "Processing"
   homepage "https://processing.org/"
+
+  livecheck do
+    url :url
+    regex(%r{href=.*?tree/processing[._-](\d+)[._-]v?(\d+(?:\.\d+)+)}i)
+    strategy :github_latest do |page|
+      page.scan(regex)
+          .map { |match| "#{match[1]},#{match[0]}" }
+    end
+  end
 
   app "Processing.app"
 

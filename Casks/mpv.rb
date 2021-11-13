@@ -1,16 +1,21 @@
 cask "mpv" do
-  version "0.33.0"
-  sha256 "4cde3e8153e5653ee651258c1d5b1ff8e2b5f16c687c06dc7f97f38f781a7615"
+  version "0.34.0"
+  sha256 "5816958ef70df7146b5fa9e6af354b5ddd44aa97b6c86d771ad822403d791384"
 
   url "https://laboratory.stolendata.net/~djinn/mpv_osx/mpv-#{version}.tar.gz",
       verified: "laboratory.stolendata.net/~djinn/mpv_osx/"
-  appcast "https://laboratory.stolendata.net/~djinn/mpv_osx/"
   name "mpv"
   desc "Media player based on MPlayer and mplayer2"
   homepage "https://mpv.io/"
 
+  livecheck do
+    url "https://laboratory.stolendata.net/~djinn/mpv_osx/"
+    strategy :page_match
+    regex(/mpv-(\d+(?:\.\d+)+)\.tar\.gz/i)
+  end
+
   conflicts_with formula: "mpv"
-  depends_on macos: ">= :sierra"
+  depends_on macos: ">= :mojave"
 
   app "mpv.app"
   binary "#{appdir}/mpv.app/Contents/MacOS/mpv"

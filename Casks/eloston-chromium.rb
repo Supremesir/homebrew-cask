@@ -1,20 +1,16 @@
 cask "eloston-chromium" do
   if Hardware::CPU.intel?
-    version "88.0.4324.192-1.1"
-    sha256 "4cacb5ae40c37ef17cf01f4e063772ff7e83d829ae6132d8e6f2c98178bf10e9"
-
-    url "https://github.com/kramred/ungoogled-chromium-macos/releases/download/#{version}_x86-64/ungoogled-chromium_#{version}_x86-64-macos.dmg",
-        verified: "github.com/kramred/ungoogled-chromium-macos/"
+    version "95.0.4638.69-1.1_x86-64"
+    sha256 "d5bf9b49e835aa76fc249732d585b9e098721227406825c6d954d4c9a355544e"
   else
-    version "88.0.4324.150-1.1"
-    sha256 "2f643e98dd9e8384a40a4c5d0d4bc4d4ef5ea7553fa05fd54a15537a647b846a"
-
-    url "https://github.com/kramred/ungoogled-chromium-macos/releases/download/#{version}_arm64/ungoogled-chromium_#{version}_arm64-macos.dmg",
-        verified: "github.com/kramred/ungoogled-chromium-macos/"
+    version "95.0.4638.69-1.1_arm64"
+    sha256 "75b412a454ad85d023a8ca999e728c4b872558c1ad7d68698dcfdab050748d2e"
   end
 
-  appcast "https://github.com/kramred/ungoogled-chromium-macos/releases.atom"
+  url "https://github.com/kramred/ungoogled-chromium-macos/releases/download/#{version}/ungoogled-chromium_#{version}-macos.dmg",
+      verified: "github.com/kramred/ungoogled-chromium-macos/"
   name "Ungoogled Chromium"
+  desc "Google Chromium, sans integration with Google"
   homepage "https://ungoogled-software.github.io/ungoogled-chromium-binaries/"
 
   conflicts_with cask: [
@@ -25,9 +21,9 @@ cask "eloston-chromium" do
   app "Chromium.app"
 
   zap trash: [
-    "~/Library/Preferences/org.chromium.Chromium.plist",
-    "~/Library/Caches/Chromium",
     "~/Library/Application Support/Chromium",
+    "~/Library/Caches/Chromium",
+    "~/Library/Preferences/org.chromium.Chromium.plist",
     "~/Library/Saved Application State/org.chromium.Chromium.savedState",
   ]
 end

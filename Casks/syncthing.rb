@@ -1,6 +1,6 @@
 cask "syncthing" do
-  version "1.13.0-1"
-  sha256 "12241016ccbf2f6fe3c81aa804f002020fd14e0c53d75d9517b10e903fb4b2f6"
+  version "1.18.4-1"
+  sha256 "04f62a24d8e4c0da20074647f73702cff91cf79a01d944f430a927b59d5e5780"
 
   url "https://github.com/syncthing/syncthing-macos/releases/download/v#{version}/Syncthing-#{version}.dmg",
       verified: "github.com/syncthing/syncthing-macos/"
@@ -15,7 +15,7 @@ cask "syncthing" do
   end
 
   auto_updates true
-  depends_on macos: ">= :yosemite"
+  depends_on macos: ">= :sierra"
 
   app "Syncthing.app"
 

@@ -1,14 +1,18 @@
 cask "chef-workstation" do
-  version "21.2.292"
-  sha256 "983ee9a08e25fc7e4f0ad3c58b622436aa3831ff1cda4c6e1aefd6720dd41a26"
+  version "21.11.679"
+  sha256 "5e1153c13101240931cb52f7f800dc629b9032e106cf1e7da3a3a2800f61fe77"
 
   url "https://packages.chef.io/files/stable/chef-workstation/#{version}/mac_os_x/10.15/chef-workstation-#{version}-1.x86_64.dmg"
-  appcast "https://omnitruck.chef.io/stable/chef-workstation/metadata?p=mac_os_x&pv=10.15&m=x86_64&v=latest"
   name "Chef Workstation"
   desc "All-in-one installer for the tools you need to manage your Chef infrastructure"
   homepage "https://docs.chef.io/workstation/"
 
-  depends_on macos: ">= :high_sierra"
+  livecheck do
+    url "https://omnitruck.chef.io/stable/chef-workstation/metadata?p=mac_os_x&pv=10.15&m=x86_64&v=latest"
+    regex(/version\s*(\d+(?:\.\d+)+)/i)
+  end
+
+  depends_on macos: ">= :mojave"
 
   pkg "chef-workstation-#{version}-1.x86_64.pkg"
 

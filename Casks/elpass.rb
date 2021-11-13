@@ -1,6 +1,6 @@
 cask "elpass" do
-  version "1.3.2,340"
-  sha256 "f927c1219475a44183d8eb9d8019238df87f430f6381a84bb2bbb2c29f8becbf"
+  version "1.4.2,412"
+  sha256 "da78de7639ea804d24764c22a34e8511f9863056d2e5923931c3c520363ff8de"
 
   url "https://elpass.app/macos/Elpass-#{version.before_comma}-#{version.after_comma}.zip"
   name "Elpass"
@@ -11,6 +11,8 @@ cask "elpass" do
     url "https://elpass.app/macos/appcast.xml"
     strategy :sparkle
   end
+
+  depends_on macos: ">= :sierra"
 
   app "Elpass.app"
 end

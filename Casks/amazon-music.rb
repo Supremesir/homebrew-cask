@@ -1,14 +1,18 @@
 cask "amazon-music" do
-  version "8.2.1.2239,01222239_032a1615c80950ffb972ac9e3e043bdd"
-  sha256 "623147209fc618907a2a4a9668b5b0411a2822306342ab232e681751d72dedb0"
+  version "8.8.1.2303,23031025_a0fe1cc5b5385fc79c8de7d5c14f5aa3"
+  sha256 "a89ad70096a254948a63d30944f6206d7e4b9e8c677d3b05b3297e927a92ca29"
 
-  url "https://morpho-releases.s3-us-west-2.amazonaws.com/mac/#{version.after_comma}/Amazon+Music+Installer.dmg",
-      verified: "morpho-releases.s3-us-west-2.amazonaws.com/mac/"
-  appcast "https://www.amazon.com/gp/dmusic/desktop/downloadPlayer",
-          must_contain: version.after_comma
+  url "https://d2j9xt6n9dg5d3.cloudfront.net/mac/#{version.after_comma}/Amazon+Music+Installer.dmg",
+      verified: "d2j9xt6n9dg5d3.cloudfront.net/mac/"
   name "Amazon Music"
   desc "Desktop client for Amazon Music"
   homepage "https://www.amazon.com/musicapps"
+
+  livecheck do
+    # The download page does not provide a version number
+    # The version number of the artifact corresponds with the installer, not the application
+    skip "No version information available"
+  end
 
   auto_updates true
 

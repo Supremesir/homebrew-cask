@@ -1,11 +1,13 @@
 cask "vapor" do
-  version "3.3.0"
-  sha256 "13c2937f1ce9d25cb0aef3ea7fc4430386cbff73771502f2725a81591f08c792"
+  version "3.5.0"
+  sha256 "16e321be63def7c16002bdc09f2ab403fe9ad4f85595a2f24d9069e8d6530dab"
 
-  url "https://github.com/NCAR/VAPOR/releases/download/#{version}/VAPOR3-#{version}-Darwin.dmg"
-  appcast "https://github.com/NCAR/VAPOR/releases.atom"
+  url "https://github.com/NCAR/VAPOR/releases/download/#{version}/VAPOR#{version.major}-#{version}-Darwin.dmg"
   name "VAPOR"
+  desc "Visualization and analysis platform"
   homepage "https://github.com/NCAR/VAPOR"
 
   app "vapor.app"
+
+  # No zap stanza required
 end

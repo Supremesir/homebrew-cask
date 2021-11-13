@@ -1,13 +1,18 @@
 cask "thonny-xxl" do
-  version "3.3.4"
-  sha256 "903709ef9a514ebd2418f8fa3a6b8e0da0c9042d4fb298321b0e4eb6304c9207"
+  version "3.3.13"
+  sha256 "76acf2edb829c244256d2be773f061585fea79c47fb4e1994ddc546f5e71317c"
 
   url "https://github.com/thonny/thonny/releases/download/v#{version}/thonny-xxl-#{version}.pkg",
       verified: "github.com/thonny/thonny/"
-  appcast "https://github.com/thonny/thonny/releases.atom"
   name "Thonny (XXL bundle)"
   desc "Python IDE for beginners"
   homepage "https://thonny.org/"
+
+  livecheck do
+    url "https://github.com/thonny/thonny/releases/"
+    strategy :page_match
+    regex(/thonny[._-]?xxl[._-]?(\d+(?:\.\d+)*)\.pkg/i)
+  end
 
   conflicts_with cask: "thonny"
 

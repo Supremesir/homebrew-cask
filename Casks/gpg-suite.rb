@@ -1,6 +1,6 @@
 cask "gpg-suite" do
-  version "2020.2"
-  sha256 "e2ede6b317d53d1e321342a6f7dd5ab6b123a4900aa8f1eab89b29051a2a4742"
+  version "2021.2"
+  sha256 "828df766dec3aa1ad4fbd29c8dd6a830d756694fae1a9f38ae78b6cfcf403f52"
 
   url "https://releases.gpgtools.org/GPG_Suite-#{version}.dmg"
   name "GPG Suite"
@@ -8,12 +8,16 @@ cask "gpg-suite" do
   homepage "https://gpgtools.org/"
 
   livecheck do
-    url "https://gpgtools.org/download"
-    strategy :header_match
+    url :homepage
+    regex(/href=.*?GPG_Suite[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
   auto_updates true
-  conflicts_with cask: "gpg-suite-nightly"
+  conflicts_with cask: [
+    "gpg-suite-nightly",
+    "gpg-suite-no-mail",
+    "gpg-suite-pinentry",
+  ], formula: "gpg"
   depends_on macos: ">= :mojave"
 
   pkg "Install.pkg"

@@ -1,6 +1,6 @@
 cask "superslicer" do
-  version "2.2.53.4,20201111"
-  sha256 "04c07dbd71395134cc0d491d4219722aa2b9387d4a28f57b46cc52de672c2cf6"
+  version "2.3.57.5,211109"
+  sha256 "cd636e7158c1228acec8554b7e42a5e8deb13a3b221bbc6898748f545f874609"
 
   url "https://github.com/supermerill/SuperSlicer/releases/download/#{version.before_comma}/SuperSlicer_#{version.before_comma}_macos_#{version.after_comma}.dmg"
   name "SuperSlicer"
@@ -10,7 +10,9 @@ cask "superslicer" do
   livecheck do
     url "https://github.com/supermerill/SuperSlicer/releases/latest"
     strategy :page_match do |page|
-      match = page.match(%r{href=.*?/SuperSlicer_(\d+(?:\.\d+)*)_macos_(\d+)\.dmg}i)
+      match = page.match(%r{href=.*?/SuperSlicer_(\d+(?:\.\d+)+)_macos_(\d+)\.dmg}i)
+      next if match.blank?
+
       "#{match[1]},#{match[2]}"
     end
   end
