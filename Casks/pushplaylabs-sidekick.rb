@@ -1,14 +1,22 @@
 cask "pushplaylabs-sidekick" do
-  version "92.11.5.13226,6bc0c48"
-  sha256 "30ccd7071169c062fe227bcc049f0edbe62bfa07ef74100f4d4fd93002a9272c"
+  arch = Hardware::CPU.intel? ? "x64" : "arm64"
+  livecheck_folder = Hardware::CPU.intel? ? "mac" : "macm1"
 
-  url "https://sidekick-cdn-production.meetsidekick.com/builds/sidekick-mac-release-universal-#{version.before_comma}-#{version.after_comma}-df.dmg"
+  if Hardware::CPU.intel?
+    version "94.13.2.14440,f15ef51"
+    sha256 "5ac5ed226074550d6df863c89c481067e70f39e68fdf98492437f99028dcbf46"
+  else
+    version "94.13.2.14442,5a79b42"
+    sha256 "0c7411a02be7a673c03d5df30075b3f5bc516431bbf876f44c6c38daab21ed74"
+  end
+
+  url "https://sidekick-cdn-production.meetsidekick.com/builds/sidekick-mac-release-#{arch}-#{version.before_comma}-#{version.after_comma}-df.dmg"
   name "Sidekick"
   desc "Browser designed for modern work"
   homepage "https://www.meetsidekick.com/"
 
   livecheck do
-    url "https://api.meetsidekick.com/downloads/macm1"
+    url "https://api.meetsidekick.com/downloads/df/#{livecheck_folder}"
     strategy :header_match do |headers|
       match = headers["location"].match(/[_-](\d+(?:\.\d+)+)[_-](.+)[._-]df\.dmg/i)
       next if match.blank?

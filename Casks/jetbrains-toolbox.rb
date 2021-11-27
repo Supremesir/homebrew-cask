@@ -1,16 +1,15 @@
 cask "jetbrains-toolbox" do
-  version "1.22,1.22.10685"
+  arch = Hardware::CPU.intel? ? "" : "-arm64"
+
+  version "1.22,1.22.10774"
 
   if Hardware::CPU.intel?
-    sha256 "29cf83939ba9bd50a783fe99954e3d5a539b5812bb4802a5470949e2e003a792"
-
-    url "https://download.jetbrains.com/toolbox/jetbrains-toolbox-#{version.after_comma}.dmg"
+    sha256 "7ce32584ecc7012930d72f9871e5fba57d205a56726d1cb786bc0177ee3756eb"
   else
-    sha256 "2bfee48d00d1d35533d510eb5f2fd6baef4740a1171d391c2e830879638b5269"
-
-    url "https://download.jetbrains.com/toolbox/jetbrains-toolbox-#{version.after_comma}-arm64.dmg"
+    sha256 "c3502cb63298876233e8ed66a1db8b9b90ab43501fe4ea8c9666970fdd2d95ff"
   end
 
+  url "https://download.jetbrains.com/toolbox/jetbrains-toolbox-#{version.after_comma}#{arch}.dmg"
   name "JetBrains Toolbox"
   desc "JetBrains tools manager"
   homepage "https://www.jetbrains.com/toolbox-app/"
@@ -30,9 +29,9 @@ cask "jetbrains-toolbox" do
   app "JetBrains Toolbox.app"
 
   zap trash: [
-    "~/Library/Saved Application State/com.jetbrains.toolbox.savedState",
+    "~/Library/Application Support/JetBrains/Toolbox",
     "~/Library/Logs/JetBrains/Toolbox",
     "~/Library/Preferences/com.jetbrains.toolbox.renderer.plist",
-    "~/Library/Application Support/JetBrains/Toolbox",
+    "~/Library/Saved Application State/com.jetbrains.toolbox.savedState",
   ]
 end

@@ -1,8 +1,8 @@
 cask "unity-lumin-support-for-editor" do
-  version "2021.2.2f1,5e2b1e92c7f8"
-  sha256 "f6bb4f7621d513c6cedcf1bfe03ac11638fb963b4d4653b84f772863860027d8"
+  version "2021.2.4f1,99ba6aa4c552"
+  sha256 "78bbb8d6fcf006eadf7150974e1b85eed76c07033ec40055fcd8dff8cec18a53"
 
-  url "https://download.unity3d.com/download_unity/#{version.after_comma}/MacEditorTargetInstaller/UnitySetup-Lumin-Support-for-Editor-#{version.before_comma}.pkg",
+  url "https://download.unity3d.com/download_unity/#{version.csv.second}/MacEditorTargetInstaller/UnitySetup-Lumin-Support-for-Editor-#{version.csv.first}.pkg",
       verified: "download.unity3d.com/download_unity/"
   name "Unity Lumin Build Support"
   desc "Lumin target support for Unity"
@@ -13,7 +13,7 @@ cask "unity-lumin-support-for-editor" do
     strategy :page_match do |page|
       page.scan(%r{
         /download_unity/(\h+)/MacEditorTargetInstaller
-        /UnitySetup-Lumin-Support-for-Editor-(\d+(?:\.\d+)*[a-z]*\d*)\.pkg
+        /UnitySetup-Lumin-Support-for-Editor-(\d+(?:\.\d+)+[a-z]*\d*)\.pkg
       }ix).map do |match|
         "#{match[1]},#{match[0]}"
       end
@@ -22,7 +22,7 @@ cask "unity-lumin-support-for-editor" do
 
   depends_on cask: "unity"
 
-  pkg "UnitySetup-Lumin-Support-for-Editor-#{version.before_comma}.pkg"
+  pkg "UnitySetup-Lumin-Support-for-Editor-#{version.csv.first}.pkg"
 
   uninstall pkgutil: "com.unity3d.LuminSupport"
 end

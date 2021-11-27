@@ -1,8 +1,8 @@
 cask "unity-ios-support-for-editor" do
-  version "2021.2.2f1,5e2b1e92c7f8"
-  sha256 "411ad76dbf6a78b3d278f343c449f238d9c3709bbc8b24365617a2c1d38c18e6"
+  version "2021.2.4f1,99ba6aa4c552"
+  sha256 "d7e1aac453e38217aaa01684e94a65e9361941b82b3c55a2416e4d83d57f704e"
 
-  url "https://download.unity3d.com/download_unity/#{version.after_comma}/MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-#{version.before_comma}.pkg",
+  url "https://download.unity3d.com/download_unity/#{version.csv.second}/MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-#{version.csv.first}.pkg",
       verified: "download.unity3d.com/download_unity/"
   name "Unity iOS Build Support"
   desc "iOS target support for Unity"
@@ -13,7 +13,7 @@ cask "unity-ios-support-for-editor" do
     strategy :page_match do |page|
       page.scan(%r{
         /download_unity/(\h+)/MacEditorTargetInstaller
-        /UnitySetup-iOS-Support-for-Editor-(\d+(?:\.\d+)*[a-z]*\d*)\.pkg
+        /UnitySetup-iOS-Support-for-Editor-(\d+(?:\.\d+)+[a-z]*\d*)\.pkg
       }ix).map do |match|
         "#{match[1]},#{match[0]}"
       end
@@ -22,7 +22,7 @@ cask "unity-ios-support-for-editor" do
 
   depends_on cask: "unity"
 
-  pkg "UnitySetup-iOS-Support-for-Editor-#{version.before_comma}.pkg"
+  pkg "UnitySetup-iOS-Support-for-Editor-#{version.csv.first}.pkg"
 
   uninstall pkgutil: "com.unity3d.iOSSupport"
 end
