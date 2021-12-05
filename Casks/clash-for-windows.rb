@@ -1,7 +1,7 @@
 cask "clash-for-windows" do
   arch = Hardware::CPU.intel? ? "" : "-arm64"
 
-  version "0.18.10"
+  version "0.18.11"
 
   if Hardware::CPU.intel?
     sha256 "d10c75861339fa35d7125021d4cfe0a1e78176d1bf85ec8b6acdb875235f249d"
